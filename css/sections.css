@@ -2281,3 +2281,343 @@
     right: 1.25rem;
   }
 }
+
+/* =============================================
+   FINAL POLISH AND MOBILE FIXES
+   Small but important details that elevate
+   the overall quality and feel of the website.
+   Applied after all sections are complete.
+   ============================================= */
+
+/*
+  SMOOTH PAGE TRANSITIONS
+  Adds a very subtle fade in when the page
+  first loads so it never feels like content
+  is just snapping into place abruptly.
+*/
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+body {
+  animation: pageFadeIn 0.4s ease forwards;
+}
+
+/*
+  SELECTION COLOR
+  When the user highlights text on the page
+  it shows gold background with dark text
+  matching the brand color palette.
+*/
+::selection {
+  background: rgba(201, 168, 76, 0.3);
+  color: var(--color-text);
+}
+
+/*
+  FOCUS VISIBLE STYLES
+  When users navigate with keyboard the
+  focused element gets a clear gold outline.
+  This is important for accessibility.
+  Using focus-visible means mouse clicks
+  do not show the outline — only keyboard.
+*/
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/*
+  IMPROVED HERO IMAGE DISPLAY
+  Ensures the hero portrait fills its frame
+  correctly and focuses on the face area
+  on all screen sizes.
+*/
+.hero__image-frame img {
+  object-position: top center;
+}
+
+/*
+  ABOUT IMAGE POLISH
+  Adds a very subtle gold tint overlay on
+  the about image to tie it visually into
+  the gold accent color of the page.
+*/
+.about__image .image-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 60%,
+    rgba(201, 168, 76, 0.06) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/*
+  PROJECT IMAGE OVERLAY
+  Adds a subtle dark gradient at the bottom
+  of each project image to help the image
+  feel grounded and premium.
+*/
+.project__image .image-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 15, 30, 0.3) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/*
+  GALLERY IMAGE PLACEHOLDER BACKGROUND
+  When gallery images are still loading or
+  missing this gives the grid a consistent
+  dark surface look instead of blank white.
+*/
+.gallery__item {
+  background: var(--color-surface-2);
+}
+
+/*
+  IMPROVED SECTION TRANSITIONS
+  Adds a very subtle top border glow to
+  alternating sections to help them feel
+  visually separated without hard lines.
+*/
+#about::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-border),
+    transparent
+  );
+}
+
+/*
+  BUTTON ACTIVE STATE
+  When a button is clicked it scales down
+  very slightly giving tactile feedback.
+*/
+.btn:active {
+  transform: scale(0.97);
+}
+
+/*
+  NAVBAR LOGO HOVER ANIMATION
+  Adds a subtle scale effect on the navbar
+  logo when hovered for a premium feel.
+*/
+.navbar__logo {
+  display: inline-block;
+  transition:
+    opacity var(--transition-base),
+    transform var(--transition-base);
+}
+
+.navbar__logo:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+/*
+  IMPROVED MOBILE HERO
+  On small screens the hero name was
+  slightly too large causing overflow.
+  This tightens it for very small devices.
+*/
+@media (max-width: 380px) {
+  .hero__name {
+    font-size: 2.8rem;
+  }
+
+  .hero__eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+  }
+
+  .hero__tagline {
+    font-size: 0.95rem;
+  }
+}
+
+/*
+  MOBILE FOOTER CTA BAND FIX
+  On small screens the CTA heading was
+  overflowing on some devices. This ensures
+  it wraps cleanly at all sizes.
+*/
+@media (max-width: 480px) {
+  .footer__cta-heading {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+    word-break: break-word;
+  }
+}
+
+/*
+  MOBILE NAVBAR HEIGHT FIX
+  Ensures the mobile full screen menu
+  accounts for devices with dynamic
+  browser toolbars at the bottom.
+*/
+@media (max-width: 768px) {
+  .navbar__links {
+    min-height: 100svh;
+  }
+}
+
+/*
+  PERSPECTIVES GRID FIX
+  On tablet sizes the three cards were
+  sometimes creating an orphaned single
+  card on the last row. This centers it.
+*/
+@media (max-width: 1024px) {
+  .perspectives__grid {
+    justify-items: center;
+  }
+
+  .post__card {
+    width: 100%;
+  }
+}
+
+/*
+  HIGHLIGHT TIMELINE MOBILE FIX
+  On very small screens the timeline dot
+  and line were slightly misaligned.
+  This corrects the positioning.
+*/
+@media (max-width: 380px) {
+  .highlights__timeline {
+    padding-left: 1rem;
+  }
+
+  .highlight__item::before {
+    left: -1rem;
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/*
+  BOOK COVER MOBILE FIX
+  On small screens the tilted book cover
+  was getting clipped by the section overflow.
+  Reduce the tilt on mobile.
+*/
+@media (max-width: 480px) {
+  .book__cover-frame {
+    transform: rotate(-1deg);
+  }
+
+  .book__cover-frame:hover {
+    transform: rotate(0deg);
+  }
+}
+
+/*
+  GALLERY GRID MOBILE FIX
+  On very small screens ensure all gallery
+  items are the same height for consistency.
+*/
+@media (max-width: 380px) {
+  .gallery__grid {
+    grid-auto-rows: 180px;
+  }
+
+  .gallery__item--wide {
+    grid-column: span 1;
+  }
+
+  .gallery__caption {
+    opacity: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      transparent 100%
+    );
+  }
+}
+
+/*
+  IMPROVED SCROLLBAR STYLING
+  Custom scrollbar that matches the dark
+  color palette for browsers that support it.
+  Firefox uses scrollbar-color property.
+  Chrome and Edge use webkit pseudo elements.
+*/
+html {
+  scrollbar-color: var(--color-accent) var(--color-surface);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text);
+}
+
+/*
+  IMAGE LOADING OPTIMIZATION
+  Adds a subtle shimmer background to all
+  images while they are loading so the page
+  never shows blank white rectangles.
+*/
+img {
+  background: var(--color-surface-2);
+}
+
+/*
+  PRINT STYLES
+  Basic print styles so the page looks
+  reasonable if someone prints it.
+  Hides interactive elements and resets
+  colors to black on white.
+*/
+@media print {
+  .navbar,
+  .scroll-top,
+  .hero__socials,
+  .footer__cta-band,
+  .footer__form-wrap {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .section-title,
+  .hero__name,
+  .project__title,
+  .highlight__role {
+    color: black;
+  }
+}
