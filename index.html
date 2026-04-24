@@ -353,7 +353,120 @@
     </section>
 
     <section id="book">
-      <!-- Book section -->
+      <!-- =============================================
+           BOOK SECTION
+           Magazine-style feature layout showcasing
+           Dr. Vin Menon's published book.
+           Left: angled book cover with badge
+           Right: editorial content and takeaways
+           ============================================= -->
+
+      <div class="book__inner container">
+
+        <!-- Section header with label and title -->
+        <div class="book__header reveal-group">
+          <span class="section-label reveal">Author</span>
+          <h2 class="section-title reveal">Blockchain for Good</h2>
+          <div class="divider reveal"></div>
+        </div>
+
+        <!-- Main two-column layout -->
+        <!-- Left column holds the book cover image -->
+        <!-- Right column holds all editorial content -->
+        <div class="book__body">
+
+          <!-- LEFT: Book cover with decorative badge -->
+          <div class="book__cover-wrap reveal">
+
+            <!-- Outer frame adds the angled tilt effect -->
+            <div class="book__cover-frame">
+
+              <!-- Book cover image — add actual image to assets/images/book/ -->
+              <img
+                src="assets/images/book/blockchain-for-good.jpg"
+                alt="Blockchain for Good — Dr. Vin Menon"
+                class="book__cover-img"
+              >
+
+              <!-- Small badge overlaid on the bottom right of the cover -->
+              <span class="book__badge">Published May 2023</span>
+
+            </div>
+
+          </div>
+
+          <!-- RIGHT: All editorial text content -->
+          <div class="book__editorial reveal">
+
+            <!-- Small category label above subtitle -->
+            <span class="book__category section-label">
+              By Dr. Vin Menon
+            </span>
+
+            <!-- Book subtitle -->
+            <p class="book__subtitle">
+              How Blockchain is Solving the
+              Sustainable Development Goals
+            </p>
+
+            <!-- Short synopsis paragraph -->
+            <p class="book__synopsis">
+              Blockchain For Good is a groundbreaking book that
+              explores how blockchain technology is solving the
+              UN's Sustainable Development Goals (SDGs) and
+              creating a more sustainable and equitable future.
+              Dr. Vin Menon provides a comprehensive overview of
+              blockchain technology and its applications in food,
+              health, shelter, education, economic growth,
+              environmental challenges, and social issues.
+            </p>
+
+            <!-- What readers will learn — four key takeaways -->
+            <div class="book__takeaways">
+
+              <!-- Takeaways heading -->
+              <p class="book__takeaways-heading">
+                In This Book, You Will:
+              </p>
+
+              <!-- Each list item uses an arrow prefix defined in CSS -->
+              <ul class="book__takeaways-list">
+                <li>
+                  Understand the basics of blockchain technology
+                  and its benefits
+                </li>
+                <li>
+                  Explore how blockchain is solving the UN's
+                  Sustainable Development Goals
+                </li>
+                <li>
+                  Discover real-world examples of blockchain
+                  technology in action across various industries
+                </li>
+                <li>
+                  Learn about the potential of blockchain to
+                  promote sustainability, equity, and social impact
+                </li>
+              </ul>
+
+            </div>
+
+            <!-- Inspirational pull quote styled as a callout -->
+            <blockquote class="book__cta-quote">
+              "Join the revolution of using blockchain for good
+              and make a difference in the world."
+            </blockquote>
+
+            <!-- CTA button linking to the book -->
+            <a href="#" class="btn btn--primary">
+              View The Book →
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
     </section>
 
     <section id="perspectives">

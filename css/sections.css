@@ -677,3 +677,501 @@
     gap: 0.3rem;
   }
 }
+
+/* ── Projects ─────────────────────────────────────────────────────────── */
+
+#projects {
+  position: relative;
+  overflow: hidden;
+}
+
+#projects::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: -15%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.projects__header {
+  text-align: center;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.projects__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.project__block {
+  position: relative;
+  padding-block: 6rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.project__block:last-child {
+  border-bottom: none;
+}
+
+.project__index {
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(6rem, 12vw, 10rem);
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(201, 168, 76, 0.05);
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: -0.04em;
+}
+
+.project__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.project__block:nth-child(even) .project__content {
+  direction: rtl;
+}
+
+.project__block:nth-child(even) .project__content > * {
+  direction: ltr;
+}
+
+.project__image {
+  width: 100%;
+}
+
+.project__image .image-frame {
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.project__image .image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.project__image .image-frame:hover img {
+  transform: scale(1.04);
+}
+
+.project__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.project__info .tag {
+  margin-bottom: 0.25rem;
+}
+
+.project__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.project__desc {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.9;
+  max-width: 50ch;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .project__content {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .project__block:nth-child(even) .project__content {
+    direction: ltr;
+  }
+}
+
+@media (max-width: 768px) {
+  .project__block {
+    padding-block: 4rem;
+  }
+
+  .project__content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .project__block:nth-child(even) .project__content {
+    direction: ltr;
+  }
+
+  .project__index {
+    font-size: clamp(4rem, 15vw, 6rem);
+    top: 1.5rem;
+  }
+
+  .project__info {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project__block {
+    padding-block: 3rem;
+  }
+
+  .project__title {
+    font-size: clamp(1.5rem, 6vw, 1.8rem);
+  }
+
+  .project__desc {
+    font-size: 0.9rem;
+  }
+}
+
+/* =============================================
+   BOOK SECTION
+   Magazine-style layout with angled book cover
+   and editorial content column
+   ============================================= */
+
+/*
+  Main book section wrapper
+  Uses a slightly elevated background to visually
+  separate it from the projects section above
+*/
+#book {
+  position: relative;
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+/*
+  Decorative background glow
+  Adds a very subtle gold radial gradient in the
+  top right corner for visual depth
+*/
+#book::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.05) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/*
+  Top gradient border line
+  Creates a thin gold gradient line across the
+  top edge of the section for visual separation
+*/
+#book::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-accent),
+    transparent
+  );
+}
+
+/*
+  Section header block
+  Centers the label, title and divider
+*/
+.book__header {
+  text-align: center;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*
+  Main two-column layout
+  Left column is narrower for the book cover
+  Right column is wider for the editorial content
+  Columns are vertically centered
+*/
+.book__body {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+/*
+  Book cover wrapper
+  Centers the cover frame inside the left column
+*/
+.book__cover-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*
+  Book cover frame
+  Adds the editorial magazine-style tilt to the cover
+  position relative allows the badge to sit on top
+*/
+.book__cover-frame {
+  position: relative;
+  max-width: 300px;
+  width: 100%;
+  transform: rotate(-3deg);
+  transition: transform var(--transition-slow);
+}
+
+/*
+  On hover straighten the cover slightly
+  Gives a subtle interactive feel
+*/
+.book__cover-frame:hover {
+  transform: rotate(-1deg);
+}
+
+/*
+  Book cover image
+  Full width of its frame, natural aspect ratio
+  Deep shadow gives it a physical book feel
+*/
+.book__cover-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-sm);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 40px 80px rgba(0, 0, 0, 0.3);
+}
+
+/*
+  Published date badge
+  Positioned in the bottom right corner of the cover
+  Gold background with dark text for contrast
+*/
+.book__badge {
+  position: absolute;
+  bottom: -1rem;
+  right: -1.5rem;
+  background: var(--color-accent);
+  color: #0A0F1E;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-sm);
+}
+
+/*
+  Editorial content column
+  Stacks all text elements vertically with
+  consistent spacing between them
+*/
+.book__editorial {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+/*
+  Book subtitle
+  Slightly larger than body text, sits just
+  below the author label
+*/
+.book__subtitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--color-text);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/*
+  Synopsis paragraph
+  Standard body text with generous line height
+  for comfortable reading
+*/
+.book__synopsis {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.9;
+  max-width: 54ch;
+  margin: 0;
+}
+
+/*
+  Takeaways block wrapper
+  Groups the heading and list together
+*/
+.book__takeaways {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/*
+  Takeaways heading
+  Small uppercase label above the list
+*/
+.book__takeaways-heading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+/*
+  Takeaways list
+  Removes default bullet styles
+  Each item gets a custom arrow prefix via CSS
+*/
+.book__takeaways-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/*
+  Each takeaway list item
+  Padding left makes room for the arrow pseudo-element
+*/
+.book__takeaways-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+/*
+  Arrow prefix on each list item
+  Uses CSS content to add a gold arrow
+  positioned to the left of the text
+*/
+.book__takeaways-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+}
+
+/*
+  Pull quote callout block
+  Italic serif quote with gold left border
+  Creates a visual break before the CTA button
+*/
+.book__cta-quote {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--color-text);
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1.25rem;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 48ch;
+}
+
+/*
+  Tablet layout adjustment
+  Reduce gap and rebalance column widths
+  on medium screens
+*/
+@media (max-width: 1024px) {
+  .book__body {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+  }
+}
+
+/*
+  Mobile layout
+  Stack cover above editorial content
+  Center the cover on small screens
+*/
+@media (max-width: 768px) {
+  .book__body {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .book__cover-wrap {
+    max-width: 260px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .book__cover-frame {
+    transform: rotate(-2deg);
+  }
+
+  .book__header {
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+
+/*
+  Small mobile adjustments
+  Tighten spacing on very small screens
+*/
+@media (max-width: 480px) {
+  .book__editorial {
+    gap: 1.25rem;
+  }
+
+  .book__synopsis {
+    font-size: 0.875rem;
+  }
+
+  .book__cta-quote {
+    font-size: 0.95rem;
+  }
+}
