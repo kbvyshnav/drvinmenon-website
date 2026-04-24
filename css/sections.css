@@ -1771,3 +1771,513 @@
     opacity: 1;
   }
 }
+
+/* =============================================
+   FOOTER
+   Two part layout:
+   1. Gold CTA band above the main footer
+   2. Dark four column main footer grid
+   ============================================= */
+
+/*
+  CTA Band
+  Full width gold background band that sits
+  just above the main footer. The high contrast
+  gold background with dark text makes this
+  the strongest visual call to action on the page.
+*/
+.footer__cta-band {
+  background: var(--color-accent);
+  padding-block: 5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/*
+  Decorative circle behind CTA band text
+  Large semi-transparent circle adds depth
+  without distracting from the message
+*/
+.footer__cta-band::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+
+/*
+  CTA band headline
+  Large serif font in dark color for
+  maximum contrast against gold background
+*/
+.footer__cta-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #0A0F1E;
+  line-height: 1.15;
+  margin-bottom: 1.75rem;
+}
+
+/*
+  Email links row inside CTA band
+  Flex row with centered alignment
+  and a small divider dot between them
+*/
+.footer__cta-emails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/*
+  Individual email link in CTA band
+  Dark color to match the heading
+  Underline appears on hover
+*/
+.footer__cta-email {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #0A0F1E;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity var(--transition-base);
+}
+
+.footer__cta-email:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/*
+  Dot divider between the two email addresses
+  Muted dark color to not overpower the emails
+*/
+.footer__cta-divider {
+  color: rgba(10, 15, 30, 0.4);
+  font-size: 1.2rem;
+}
+
+/*
+  Main footer wrapper
+  Very dark background slightly darker than
+  the page background to ground the footer
+  visually at the bottom of the page
+*/
+.footer__main {
+  background: #060B16;
+  padding-top: 5rem;
+}
+
+/*
+  Four column grid layout
+  Columns are weighted so brand column
+  is slightly wider than the others
+  Gap provides breathing room between columns
+*/
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.4fr;
+  gap: 3rem;
+  padding-bottom: 4rem;
+}
+
+/*
+  Footer logo
+  Serif font matching the navbar logo style
+  Gold color for brand consistency
+*/
+.footer__logo {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/*
+  Brand tagline below the logo
+  Muted color, small size, generous line height
+  Max width keeps it from stretching too wide
+*/
+.footer__tagline {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.8;
+  max-width: 28ch;
+  margin-bottom: 1.5rem;
+}
+
+/*
+  Social links row in brand column
+  Flex row with small gap between each link
+*/
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/*
+  Individual social link
+  Small uppercase text labels as placeholders
+  Muted color with gold hover transition
+*/
+.footer__social-link {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.footer__social-link:hover {
+  color: var(--color-accent);
+}
+
+/*
+  Column headings for quick links,
+  contact info and form sections
+  Small gold uppercase label style
+*/
+.footer__col-heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+}
+
+/*
+  Quick links navigation list
+  Removes default list styling
+  Stacks links vertically with small gap
+*/
+.footer__nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/*
+  Individual quick link
+  Muted color with text hover transition
+  Small size to not compete with main content
+*/
+.footer__nav-link {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/*
+  Arrow prefix appears on link hover
+  Uses CSS content pseudo element
+  Gives a subtle directional motion feel
+*/
+.footer__nav-link::before {
+  content: '→';
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity var(--transition-base),
+    transform var(--transition-base);
+}
+
+.footer__nav-link:hover {
+  color: var(--color-text);
+}
+
+.footer__nav-link:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/*
+  Contact info list
+  Stacks the two email links vertically
+*/
+.footer__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+/*
+  Individual contact email link
+  Flex row aligns icon and email address
+  Muted color with gold hover
+*/
+.footer__contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.footer__contact-link:hover {
+  color: var(--color-accent);
+}
+
+/*
+  Small envelope icon before each email
+  Uses the HTML entity passed in the markup
+*/
+.footer__contact-icon {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+}
+
+/*
+  Small note below contact links
+  Very muted, tiny font to keep it subtle
+*/
+.footer__contact-note {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  opacity: 0.6;
+  line-height: 1.6;
+}
+
+/*
+  Contact form wrapper
+  No extra styles needed beyond the column grid
+*/
+.footer__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/*
+  Form input fields
+  Dark semi-transparent background
+  Subtle border that brightens on focus
+  Full width to fill the column
+*/
+.footer__input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  transition: border-color var(--transition-base);
+  outline: none;
+}
+
+/*
+  Input focus state
+  Gold border highlight when user clicks
+  into the field for clear visual feedback
+*/
+.footer__input:focus {
+  border-color: rgba(201, 168, 76, 0.5);
+}
+
+/*
+  Placeholder text inside inputs
+  Muted color so it does not compete with
+  the actual typed text
+*/
+.footer__input::placeholder {
+  color: var(--color-muted);
+  opacity: 0.6;
+}
+
+/*
+  Textarea field
+  Same styles as input fields for consistency
+  resize vertical only so user cannot break
+  the horizontal layout by dragging it wider
+*/
+.footer__textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  transition: border-color var(--transition-base);
+  outline: none;
+  resize: vertical;
+  min-height: 110px;
+}
+
+.footer__textarea:focus {
+  border-color: rgba(201, 168, 76, 0.5);
+}
+
+.footer__textarea::placeholder {
+  color: var(--color-muted);
+  opacity: 0.6;
+}
+
+/*
+  Submit button
+  Full width to fill the form column
+  Uses existing btn--primary styles
+*/
+.footer__submit {
+  width: 100%;
+  justify-content: center;
+}
+
+/*
+  Footer bottom bar
+  Very subtle top border separates it
+  from the four column grid above
+  Centers the copyright text
+*/
+.footer__bottom {
+  border-top: 1px solid var(--color-border);
+  padding-block: 2rem;
+}
+
+/*
+  Copyright text
+  Very small and muted so it does not
+  distract from the rest of the footer
+*/
+.footer__copyright {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  opacity: 0.5;
+  text-align: center;
+  margin: 0;
+}
+
+/*
+  Scroll to top button
+  Fixed in the bottom right corner of the page
+  Hidden by default with opacity 0
+  JS in main.js adds class visible when
+  the user scrolls down more than 400px
+*/
+.scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #0A0F1E;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition:
+    opacity var(--transition-base),
+    visibility var(--transition-base),
+    transform var(--transition-base);
+  z-index: 99;
+}
+
+/*
+  Visible state for scroll to top button
+  JS adds this class after scrolling 400px
+  Button fades in and slides up into position
+*/
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+/*
+  Tablet layout — 2 columns
+  Brand and nav in first row
+  Contact and form in second row
+*/
+@media (max-width: 1024px) {
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/*
+  Mobile layout — single column
+  All four columns stack vertically
+  CTA band emails stack vertically too
+*/
+@media (max-width: 768px) {
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer__cta-emails {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer__cta-divider {
+    display: none;
+  }
+
+  .footer__tagline {
+    max-width: 100%;
+  }
+}
+
+/*
+  Small mobile adjustments
+  Tighter padding on very small screens
+*/
+@media (max-width: 480px) {
+  .footer__cta-band {
+    padding-block: 3.5rem;
+  }
+
+  .footer__main {
+    padding-top: 3rem;
+  }
+
+  .scroll-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
+}

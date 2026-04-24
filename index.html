@@ -823,7 +823,313 @@
   </main>
 
   <footer id="site-footer">
-    <!-- Footer will go here -->
+    <!-- =============================================
+         FOOTER
+         Two parts:
+         1. CTA Band — full width gold band above
+            the footer with a bold message and
+            email contact links
+         2. Main Footer — four column layout with
+            brand info, quick links, contact details
+            and a contact form
+         ============================================= -->
+
+    <!--
+      CTA BAND
+      Full width gold colored band that sits just
+      above the main footer. Acts as a final call
+      to action before the visitor leaves the page.
+      Gold background with dark text for contrast.
+    -->
+    <div class="footer__cta-band">
+      <div class="container">
+
+        <!-- Large bold headline -->
+        <h2 class="footer__cta-heading">
+          Let's Build Something<br>That Matters.
+        </h2>
+
+        <!-- Two email links side by side -->
+        <!-- One for personal contact, one for team -->
+        <div class="footer__cta-emails">
+          <a
+            href="mailto:me@drvinmenon.com"
+            class="footer__cta-email"
+          >
+            me@drvinmenon.com
+          </a>
+          <span class="footer__cta-divider">·</span>
+          <a
+            href="mailto:team@drvinmenon.com"
+            class="footer__cta-email"
+          >
+            team@drvinmenon.com
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!--
+      MAIN FOOTER
+      Four column grid layout:
+      Col 1: Brand info and social links
+      Col 2: Quick navigation links
+      Col 3: Contact information
+      Col 4: Contact form
+    -->
+    <div class="footer__main">
+      <div class="footer__inner container">
+
+        <!--
+          COLUMN 1: Brand
+          Logo name, short tagline and social icons
+        -->
+        <div class="footer__brand">
+
+          <!-- Footer logo -->
+          <a href="index.html" class="footer__logo">
+            Dr. Vin Menon
+          </a>
+
+          <!-- One line brand tagline -->
+          <p class="footer__tagline">
+            A global entrepreneur and thought leader
+            in regenerative technology and
+            sustainable finance.
+          </p>
+
+          <!--
+            Social media links
+            Using text labels as placeholders
+            Replace with SVG icons later
+          -->
+          <div class="footer__socials">
+            <a
+              href="https://x.com"
+              target="_blank"
+              rel="noopener"
+              class="footer__social-link"
+              aria-label="X"
+            >X</a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener"
+              class="footer__social-link"
+              aria-label="LinkedIn"
+            >LI</a>
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener"
+              class="footer__social-link"
+              aria-label="YouTube"
+            >YT</a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener"
+              class="footer__social-link"
+              aria-label="Instagram"
+            >IG</a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener"
+              class="footer__social-link"
+              aria-label="Facebook"
+            >FB</a>
+          </div>
+
+        </div>
+
+        <!--
+          COLUMN 2: Quick Links
+          Navigation links repeated in footer
+          for easy access without scrolling up
+        -->
+        <div class="footer__nav">
+
+          <h3 class="footer__col-heading">Quick Links</h3>
+
+          <ul class="footer__nav-list">
+            <li>
+              <a href="#hero" class="footer__nav-link">Home</a>
+            </li>
+            <li>
+              <a href="#about" class="footer__nav-link">About</a>
+            </li>
+            <li>
+              <a href="#projects" class="footer__nav-link">
+                Projects
+              </a>
+            </li>
+            <li>
+              <a href="#gallery" class="footer__nav-link">
+                Gallery
+              </a>
+            </li>
+            <li>
+              <a href="#book" class="footer__nav-link">
+                Book
+              </a>
+            </li>
+            <li>
+              <a href="#perspectives" class="footer__nav-link">
+                Insights
+              </a>
+            </li>
+          </ul>
+
+        </div>
+
+        <!--
+          COLUMN 3: Contact Info
+          Direct email addresses and a note
+          about response time
+        -->
+        <div class="footer__contact">
+
+          <h3 class="footer__col-heading">Get In Touch</h3>
+
+          <!-- Email links with mail icon placeholder -->
+          <div class="footer__contact-list">
+
+            <a
+              href="mailto:me@drvinmenon.com"
+              class="footer__contact-link"
+            >
+              <!-- Icon placeholder -->
+              <span class="footer__contact-icon">✉</span>
+              me@drvinmenon.com
+            </a>
+
+            <a
+              href="mailto:team@drvinmenon.com"
+              class="footer__contact-link"
+            >
+              <span class="footer__contact-icon">✉</span>
+              team@drvinmenon.com
+            </a>
+
+          </div>
+
+          <!-- Small note below email links -->
+          <p class="footer__contact-note">
+            We typically respond within 24–48 hours.
+          </p>
+
+        </div>
+
+        <!--
+          COLUMN 4: Contact Form
+          Simple form for direct messages.
+          data-action attribute is a placeholder
+          for Django form handling added later.
+          All inputs have name attributes ready
+          for backend processing.
+        -->
+        <div class="footer__form-wrap">
+
+          <h3 class="footer__col-heading">Send a Message</h3>
+
+          <!--
+            Contact form
+            data-action will be updated to Django
+            URL when backend is integrated later
+            csrf token input is ready for Django
+          -->
+          <form
+            id="contact-form"
+            class="footer__form"
+            data-action="/contact/"
+          >
+
+            <!-- Hidden CSRF token for Django later -->
+            <!-- Django will populate this value -->
+            <input
+              type="hidden"
+              name="csrfmiddlewaretoken"
+              value=""
+            >
+
+            <!-- Name input field -->
+            <input
+              type="text"
+              name="name"
+              id="form-name"
+              class="footer__input"
+              placeholder="Your Name"
+              required
+              autocomplete="name"
+            >
+
+            <!-- Email input field -->
+            <input
+              type="email"
+              name="email"
+              id="form-email"
+              class="footer__input"
+              placeholder="Your Email"
+              required
+              autocomplete="email"
+            >
+
+            <!-- Message textarea -->
+            <textarea
+              name="message"
+              id="form-message"
+              class="footer__textarea"
+              placeholder="Your Message"
+              rows="4"
+              required
+            ></textarea>
+
+            <!-- Submit button -->
+            <button
+              type="submit"
+              class="btn btn--primary footer__submit"
+            >
+              Send Message
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+      <!--
+        Footer bottom bar
+        Copyright line spanning full width
+        Sits below the four column grid
+      -->
+      <div class="footer__bottom">
+        <div class="container">
+          <p class="footer__copyright">
+            © 2026 Dr. Vin Menon. All rights reserved.
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <!-- End footer -->
+
+    <!--
+      SCROLL TO TOP BUTTON
+      Fixed button in the bottom right corner
+      Hidden by default, appears after scrolling
+      down 400px. JS in main.js controls visibility.
+    -->
+    <button
+      id="scroll-top"
+      class="scroll-top"
+      aria-label="Scroll to top"
+    >
+      ↑
+    </button>
+
   </footer>
 
   <script src="js/navbar.js" defer></script>
