@@ -1495,3 +1495,279 @@
     text-align: center;
   }
 }
+
+/* =============================================
+   GALLERY SECTION
+   Asymmetric masonry-style CSS grid with
+   varied item sizes for an editorial feel.
+   Hover reveals captions over a dark overlay.
+   ============================================= */
+
+/*
+  Main gallery section wrapper
+  Dark background matches the page base color
+  Overflow hidden prevents grid items from
+  bleeding outside the section boundaries
+*/
+#gallery {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+/*
+  Decorative background glow
+  Subtle gold radial gradient positioned
+  in the center right for visual depth
+*/
+#gallery::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: -15%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/*
+  Section header block
+  Centers label, title, subtitle and divider
+  Max width on subtitle keeps text readable
+*/
+.gallery__header {
+  text-align: center;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*
+  Gallery subtitle paragraph
+  Constrained width for comfortable reading
+  Centered to match the header alignment
+*/
+.gallery__sub {
+  max-width: 56ch;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/*
+  Main CSS grid container
+  4 equal columns with fixed row height of 260px
+  Items can span multiple columns or rows
+  using the gallery__item--wide and
+  gallery__item--tall modifier classes
+*/
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 260px;
+  gap: 0.85rem;
+  margin-bottom: 3rem;
+}
+
+/*
+  Base gallery item styles
+  Overflow hidden clips the image inside
+  the rounded corners during zoom hover.
+  Position relative allows the caption
+  overlay to be positioned inside it.
+*/
+.gallery__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+
+/*
+  Wide modifier — spans 2 columns
+  Used for landscape or panoramic photos
+  that need more horizontal space
+*/
+.gallery__item--wide {
+  grid-column: span 2;
+}
+
+/*
+  Tall modifier — spans 2 rows
+  Used for portrait orientation photos
+  that need more vertical space
+*/
+.gallery__item--tall {
+  grid-row: span 2;
+}
+
+/*
+  Image wrapper fills the entire item
+  Width and height 100% ensures the image
+  always fills its grid cell completely
+*/
+.gallery__img-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+/*
+  Gallery image
+  Object fit cover fills the frame without
+  distorting the image regardless of its
+  original aspect ratio.
+  Smooth zoom transition on hover.
+*/
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+/*
+  Zoom image on item hover
+  Parent hover triggers the child image scale
+*/
+.gallery__item:hover .gallery__img {
+  transform: scale(1.07);
+}
+
+/*
+  Caption overlay
+  Dark gradient from transparent at top
+  to semi-opaque black at the bottom.
+  Hidden by default with opacity 0.
+  Smoothly fades in on item hover.
+  Position absolute sits it over the image.
+*/
+.gallery__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.25rem 1.25rem;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+/*
+  Show caption on item hover
+  Opacity 1 makes it fully visible
+*/
+.gallery__item:hover .gallery__caption {
+  opacity: 1;
+}
+
+/*
+  Caption text styles
+  White text over the dark gradient overlay
+  Small size to not overpower the image
+*/
+.gallery__caption p {
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/*
+  Gold top border on caption
+  Thin line above the caption text
+  adds a premium editorial detail
+*/
+.gallery__caption::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+/*
+  CTA button row below the grid
+  Centered horizontally with top padding
+*/
+.gallery__cta {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+/*
+  Tablet layout — 3 columns
+  Reduces from 4 to 3 columns on medium screens
+  Row height slightly reduced to compensate
+*/
+@media (max-width: 1024px) {
+  .gallery__grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+  }
+}
+
+/*
+  Mobile layout — 2 columns
+  Further reduces to 2 columns on small screens
+  Wide items still span 2 columns
+  Tall items reset to single row span
+  Row height reduced for smaller screens
+*/
+@media (max-width: 768px) {
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+  }
+
+  .gallery__item--tall {
+    grid-row: span 1;
+  }
+
+  .gallery__header {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .gallery__sub {
+    text-align: left;
+  }
+}
+
+/*
+  Small mobile layout — single column
+  All items stack in a single column
+  Wide items reset to single column span
+  Consistent row height for all items
+*/
+@media (max-width: 480px) {
+  .gallery__grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+
+  .gallery__item--wide {
+    grid-column: span 1;
+  }
+
+  .gallery__item--tall {
+    grid-row: span 1;
+  }
+
+  .gallery__caption {
+    opacity: 1;
+  }
+}

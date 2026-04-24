@@ -96,7 +96,7 @@
         <div class="hero__visual">
           <div class="hero__image-frame image-frame">
             <img
-              src="assets/images/hero/portrait.jpg"
+              src="assets/images/hero/vin-hero.png"
               alt="Dr. Vin Menon — Blockchainpreneur and Impact Leader"
             >
           </div>
@@ -120,7 +120,7 @@
           <div class="about__image reveal">
             <div class="image-frame">
               <img
-                src="assets/images/about/photo.jpg"
+                src="assets/images/about/vin-about.png"
                 alt="Dr. Vin Menon"
               >
             </div>
@@ -621,7 +621,203 @@
     </section>
 
     <section id="gallery">
-      <!-- Gallery section -->
+      <!-- =============================================
+           GALLERY SECTION
+           Asymmetric masonry-style grid of curated
+           moments from Dr. Vin Menon's journey.
+           Items have different sizes (wide, tall,
+           standard) to create an editorial magazine
+           grid feel rather than a uniform photo grid.
+           ============================================= -->
+
+      <div class="gallery__inner container">
+
+        <!--
+          Gallery header
+          Large editorial title with subtitle
+          and a short description
+        -->
+        <div class="gallery__header reveal-group">
+          <span class="section-label reveal">Moments</span>
+          <h2 class="section-title reveal">Gallery</h2>
+          <p class="section-subtitle gallery__sub reveal">
+            A curated selection of moments from global stages,
+            boardrooms, and impact-driven conversations. Each
+            photograph is a story, a captured instant of
+            purpose and progress.
+          </p>
+          <div class="divider reveal"></div>
+        </div>
+
+        <!--
+          Masonry grid
+          CSS grid with fixed row height and varied
+          column/row spans to create an asymmetric layout.
+          Classes like gallery__item--wide and
+          gallery__item--tall control how many
+          columns or rows each item spans.
+        -->
+        <div class="gallery__grid">
+
+          <!-- ITEM 1: Wide item spanning 2 columns -->
+          <!-- Use a landscape speaking/stage photo here -->
+          <div class="gallery__item gallery__item--wide reveal">
+            <div class="gallery__img-wrap">
+              <img
+                src="assets/images/gallery/gallery-1.jpg"
+                alt="Dr. Vin Menon speaking on stage"
+                class="gallery__img"
+              >
+            </div>
+            <!-- Caption shown on hover -->
+            <div class="gallery__caption">
+              <p>Speaking at a Global Summit</p>
+            </div>
+          </div>
+
+          <!-- ITEM 2: Tall item spanning 2 rows -->
+          <!-- Use a portrait style photo here -->
+          <div class="gallery__item gallery__item--tall reveal">
+            <div class="gallery__img-wrap">
+              <img
+                src="assets/images/gallery/gallery-2.jpg"
+                alt="Dr. Vin Menon portrait"
+                class="gallery__img"
+              >
+            </div>
+            <div class="gallery__caption">
+              <p>Leadership Portrait</p>
+            </div>
+          </div>
+
+          <!-- ITEM 3: Standard item -->
+          <div class="gallery__item reveal">
+            <div class="gallery__img-wrap">
+              <img
+                src="assets/images/gallery/gallery-3.jpg"
+                alt="Panel discussion"
+                class="gallery__img"
+              >
+            </div>
+            <div class="gallery__caption">
+              <p>Panel Discussion</p>
+            </div>
+          </div>
+
+          <!-- ITEM 4: Standard item -->
+          <div class="gallery__item reveal">
+            <div class="gallery__img-wrap">
+              <img
+                src="assets/images/gallery/gallery-4.jpg"
+                alt="Award ceremony"
+                class="gallery__img"
+              >
+            </div>
+            <div class="gallery__caption">
+              <p>Award Ceremony</p>
+            </div>
+          </div>
+
+          <!-- ITEM 5: Wide item spanning 2 columns -->
+          <!-- Use a group or event photo here -->
+          <div class="gallery__item gallery__item--wide reveal">
+            <div class="gallery__img-wrap">
+              <img
+                src="assets/images/gallery/gallery-5.jpg"
+                alt="Conference event"
+                class="gallery__img"
+              >
+            </div>
+            <div class="gallery__caption">
+              <p>Conference Event</p>
+            </div>
+          </div>
+
+          <!-- ITEM 6: Standard item -->
+          <div class="gallery__item reveal">
+            <div class="gallery__img-wrap">
+              <img
+                src="assets/images/gallery/gallery-6.jpg"
+                alt="Networking event"
+                class="gallery__img"
+              >
+            </div>
+            <div class="gallery__caption">
+              <p>Networking Event</p>
+            </div>
+          </div>
+
+          <!-- ITEM 7: Tall item spanning 2 rows -->
+          <div class="gallery__item gallery__item--tall reveal">
+            <div class="gallery__img-wrap">
+              <img
+                src="assets/images/gallery/gallery-7.jpg"
+                alt="Keynote presentation"
+                class="gallery__img"
+              >
+            </div>
+            <div class="gallery__caption">
+              <p>Keynote Presentation</p>
+            </div>
+          </div>
+
+          <!-- ITEM 8: Standard item -->
+          <div class="gallery__item reveal">
+            <div class="gallery__img-wrap">
+              <img
+                src="assets/images/gallery/gallery-8.jpg"
+                alt="Workshop session"
+                class="gallery__img"
+              >
+            </div>
+            <div class="gallery__caption">
+              <p>Workshop Session</p>
+            </div>
+          </div>
+
+          <!-- ITEM 9: Standard item -->
+          <div class="gallery__item reveal">
+            <div class="gallery__img-wrap">
+              <img
+                src="assets/images/gallery/gallery-9.jpg"
+                alt="Media interview"
+                class="gallery__img"
+              >
+            </div>
+            <div class="gallery__caption">
+              <p>Media Interview</p>
+            </div>
+          </div>
+
+          <!-- ITEM 10: Wide item spanning 2 columns -->
+          <div class="gallery__item gallery__item--wide reveal">
+            <div class="gallery__img-wrap">
+              <img
+                src="assets/images/gallery/gallery-10.jpg"
+                alt="Impact initiative"
+                class="gallery__img"
+              >
+            </div>
+            <div class="gallery__caption">
+              <p>Impact Initiative</p>
+            </div>
+          </div>
+
+        </div>
+        <!-- End gallery grid -->
+
+        <!--
+          Explore more button
+          Centered below the grid
+          Links to a full gallery page in the future
+        -->
+        <div class="gallery__cta reveal">
+          <a href="#" class="btn btn--outline">
+            Explore More
+          </a>
+        </div>
+
+      </div>
     </section>
 
   </main>
