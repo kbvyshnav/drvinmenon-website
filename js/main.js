@@ -279,83 +279,162 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* -------------------------------------------
-     CONTACT FORM BASIC VALIDATION
-     Simple client side validation for the
-     footer contact form. Shows a success
-     message after submission for now.
-     Django will handle actual form processing
-     when the backend is connected later.
+     CONTACT FORM AJAX SUBMISSION
+     Sends form data to Django via AJAX fetch.
+     Django saves it to the database and sends
+     an email notification.
+     The page does not reload on submission.
   ------------------------------------------- */
 
   const contactForm = document.getElementById('contact-form');
 
   if (contactForm) {
 
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
 
       /*
         Prevent the default form submission
-        which would reload the page.
-        Django will handle real submission later.
+        which would reload the entire page.
+        We handle submission via fetch() instead
+        so the page stays and we show feedback.
       */
       e.preventDefault();
 
       /*
-        Get the values from each form field
+        Get references to the form fields
+        and the submit button
       */
-      const name = document.getElementById('form-name').value.trim();
-      const email = document.getElementById('form-email').value.trim();
-      const message = document.getElementById('form-message').value.trim();
+      const submitBtn = contactForm.querySelector(
+        '.footer__submit'
+      );
+      const name = document.getElementById(
+        'form-name'
+      ).value.trim();
+      const email = document.getElementById(
+        'form-email'
+      ).value.trim();
+      const message = document.getElementById(
+        'form-message'
+      ).value.trim();
 
       /*
-        Basic validation — check all fields
-        have content before proceeding
+        Basic client side validation before
+        sending anything to Django
       */
       if (!name || !email || !message) {
-
-        /*
-          If any field is empty, add a visible
-          error style to the submit button
-          temporarily to indicate the issue
-        */
-        const submitBtn = contactForm.querySelector('.footer__submit');
         submitBtn.textContent = 'Please fill all fields';
         submitBtn.style.background = '#c0392b';
-
-        /*
-          Reset the button text and color
-          after 2.5 seconds
-        */
         setTimeout(() => {
           submitBtn.textContent = 'Send Message';
           submitBtn.style.background = '';
         }, 2500);
-
         return;
       }
 
       /*
-        If validation passes show a success
-        message on the submit button
+        Show loading state on the button
+        while waiting for Django to respond
       */
-      const submitBtn = contactForm.querySelector('.footer__submit');
-      submitBtn.textContent = 'Message Sent ✓';
-      submitBtn.style.background = '#2ecc71';
+      submitBtn.textContent = 'Sending...';
       submitBtn.disabled = true;
 
       /*
-        Reset the form fields after success
+        Get the CSRF token from the hidden input
+        that Django's csrf_token tag generated.
+        Django requires this token on every POST
+        request for security verification.
       */
-      contactForm.reset();
+      const csrfToken = contactForm.querySelector(
+        '[name=csrfmiddlewaretoken]'
+      ).value;
 
       /*
-        Reset the button after 3 seconds
+        Build the form data object to send
+        to Django via fetch POST request
       */
-      setTimeout(() => {
-        submitBtn.textContent = 'Send Message';
-        submitBtn.style.background = '';
-        submitBtn.disabled = false;
-      }, 3000);
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('message', message);
+      formData.append('csrfmiddlewaretoken', csrfToken);
+
+      try {
+
+        /*
+          Send POST request to Django contact view.
+          The X-Requested-With header tells Django
+          this is an AJAX request so it returns
+          JSON instead of rendering a full page.
+        */
+        const response = await fetch('/contact/', {
+          method: 'POST',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+          body: formData,
+        });
+
+        /*
+          Parse the JSON response from Django
+          views.py returns success true or false
+        */
+        const data = await response.json();
+
+        if (data.success) {
+
+          /*
+            Success — show green confirmation
+            and reset the form fields
+          */
+          submitBtn.textContent = 'Message Sent ✓';
+          submitBtn.style.background = '#2ecc71';
+          submitBtn.style.color = '#000';
+          contactForm.reset();
+
+          /*
+            Reset button appearance after 3 seconds
+          */
+          setTimeout(() => {
+            submitBtn.textContent = 'Send Message';
+            submitBtn.style.background = '';
+            submitBtn.style.color = '';
+            submitBtn.disabled = false;
+          }, 3000);
+
+        } else {
+
+          /*
+            Django validation failed — show error
+            This happens if Django's server side
+            validation catches something the
+            client side validation missed
+          */
+          submitBtn.textContent = 'Please check your details';
+          submitBtn.style.background = '#c0392b';
+
+          setTimeout(() => {
+            submitBtn.textContent = 'Send Message';
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+          }, 2500);
+        }
+
+      } catch (error) {
+
+        /*
+          Network error or Django server error
+          Show a generic error message
+        */
+        console.error('Form submission error:', error);
+        submitBtn.textContent = 'Something went wrong';
+        submitBtn.style.background = '#c0392b';
+
+        setTimeout(() => {
+          submitBtn.textContent = 'Send Message';
+          submitBtn.style.background = '';
+          submitBtn.disabled = false;
+        }, 2500);
+      }
     });
   }
 
