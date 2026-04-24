@@ -34,10 +34,45 @@
   letter-spacing: 0.02em;
   text-decoration: none;
   transition: opacity var(--transition-base);
+  /* Flex allows the signature image to sit
+     centered inside the anchor tag */
+  display: flex;
+  align-items: center;
+  padding: 0;
 }
 
 .navbar__logo:hover {
   opacity: 0.8;
+}
+
+/*
+  Navbar signature image
+  The signature is white on transparent background.
+  No filter needed — white shows naturally on the
+  dark navbar background.
+  We just control the size and hover behavior.
+*/
+.navbar__logo-img {
+  height: 44px;
+  width: auto;
+  max-width: 180px;
+  display: block;
+  object-fit: contain;
+  opacity: 0.92;
+  transition: opacity var(--transition-base);
+}
+
+.navbar__logo:hover .navbar__logo-img {
+  opacity: 0.7;
+}
+
+/*
+  Remove any inherited filter or blend mode
+  that may have been applied previously
+*/
+.navbar__logo {
+  background: transparent;
+  mix-blend-mode: normal;
 }
 
 .navbar__links {
@@ -194,7 +229,7 @@
 
 .hero__name {
   font-family: var(--font-serif);
-  font-size: clamp(3.8rem, 8vw, 7.5rem);
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
   font-weight: 700;
   line-height: 0.92;
   color: var(--color-text);
@@ -357,6 +392,9 @@
 #about {
   position: relative;
   overflow: hidden;
+  /* Extra bottom padding gives buttons room to breathe
+     near the section border */
+  padding-bottom: calc(var(--section-padding) + 2rem);
 }
 
 #about::before {
@@ -438,6 +476,9 @@
   gap: 1rem;
   flex-wrap: wrap;
   padding-top: 0.5rem;
+  /* Breathing room above and below the CTA buttons */
+  margin-top: 1rem;
+  padding-bottom: 2rem;
 }
 
 @media (max-width: 1024px) {
@@ -629,6 +670,10 @@
   margin-top: 5rem;
   padding-top: 3rem;
   border-top: 1px solid var(--color-border);
+  /* Extra margin and padding so buttons don't
+     sit too close to the section bottom edge */
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
 }
 
 @media (max-width: 768px) {
@@ -763,13 +808,24 @@
   aspect-ratio: 16 / 10;
   border-radius: var(--radius-md);
   overflow: hidden;
+  /* Dark background shows behind logos so
+     transparent PNGs don't look broken */
+  background: var(--color-surface-2);
+  /* Padding inside the frame gives logos
+     breathing room and prevents cropping */
+  padding: 2rem;
 }
 
 .project__image .image-frame img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* contain keeps the full logo visible
+     instead of cropping it like cover would */
+  object-fit: contain;
   transition: transform var(--transition-slow);
+  /* Inner padding stops logos touching the
+     padded frame edges */
+  padding: 1rem;
 }
 
 .project__image .image-frame:hover img {
@@ -1010,6 +1066,9 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
+  /* Adds space below the CTA button at the
+     bottom of the editorial column */
+  padding-bottom: 1rem;
 }
 
 /*
@@ -1436,6 +1495,10 @@
   gap: 2rem;
   padding-top: 3rem;
   border-top: 1px solid var(--color-border);
+  /* Keeps the LinkedIn button away from the
+     section's bottom edge */
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
 /*
@@ -2442,7 +2505,7 @@ body {
 */
 @media (max-width: 380px) {
   .hero__name {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
   }
 
   .hero__eyebrow {
