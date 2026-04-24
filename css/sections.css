@@ -1175,3 +1175,323 @@
     font-size: 0.95rem;
   }
 }
+
+/* =============================================
+   STRATEGIC PERSPECTIVES SECTION
+   Editorial post card grid replacing the
+   original embedded LinkedIn feed
+   ============================================= */
+
+/*
+  Main perspectives section wrapper
+  Slightly elevated background to visually
+  separate it from the book section above
+*/
+#perspectives {
+  position: relative;
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+/*
+  Decorative background glow
+  Subtle gold radial gradient in bottom left
+  corner for visual depth and warmth
+*/
+#perspectives::before {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/*
+  Top gradient border line
+  Thin gold gradient line separating this
+  section from the one above it
+*/
+#perspectives::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-accent),
+    transparent
+  );
+}
+
+/*
+  Section header block
+  Centers label, title, subtitle and divider
+  Max width on subtitle keeps it readable
+*/
+.perspectives__header {
+  text-align: center;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*
+  Subtitle paragraph under the section title
+  Constrained width for comfortable reading
+*/
+.perspectives__sub {
+  max-width: 52ch;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/*
+  Three column post card grid
+  Equal width columns with consistent gap
+  Cards stretch to fill full column height
+*/
+.perspectives__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 4rem;
+}
+
+/*
+  Individual post card
+  Dark surface background with subtle border
+  Flex column layout so the link always sits
+  at the bottom regardless of content height
+*/
+.post__card {
+  background: var(--color-surface-2);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+/*
+  Card hover effect
+  Lifts the card slightly and adds a gold border
+  glow to draw attention on interaction
+*/
+.post__card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/*
+  Post thumbnail wrapper
+  Aspect ratio maintains consistent image height
+  across all cards regardless of image dimensions
+  Position relative allows category tag overlay
+*/
+.post__thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+/*
+  Thumbnail image
+  Fills the entire thumbnail area
+  Smooth zoom effect on card hover
+*/
+.post__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+/*
+  Zoom the thumbnail image when card is hovered
+  Parent card hover triggers child image scale
+*/
+.post__card:hover .post__img {
+  transform: scale(1.05);
+}
+
+/*
+  Category tag overlaid on thumbnail
+  Positioned in the top left corner of the image
+  Uses the existing .tag component styles as base
+  but overrides position to sit on the image
+*/
+.post__category {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #0A0F1E;
+  background: var(--color-accent);
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+  z-index: 2;
+}
+
+/*
+  Card body
+  Padding around the text content
+  Flex grow pushes the read more link to
+  the bottom of every card automatically
+*/
+.post__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+/*
+  Post date
+  Small muted text above the title
+*/
+.post__date {
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/*
+  Post title
+  Serif font for editorial feel
+  Line clamp limits to 3 lines to keep
+  all cards the same visual height
+*/
+.post__title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--color-text);
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/*
+  Read more link
+  Gold colored, sits at the bottom of the card
+  Arrow shifts right on hover for interaction feel
+*/
+.post__link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: gap var(--transition-base);
+}
+
+/*
+  Arrow shifts right on link hover
+  Creates a subtle directional motion effect
+*/
+.post__link:hover {
+  gap: 0.6rem;
+}
+
+/*
+  Bottom CTA row
+  Flexbox row with tagline on left
+  and LinkedIn button on right
+  Top border separates it from the cards
+*/
+.perspectives__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/*
+  Footer tagline text
+  Muted color, italic for a softer feel
+*/
+.perspectives__footer-text {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+/*
+  Tablet layout
+  Two column grid on medium screens
+*/
+@media (max-width: 1024px) {
+  .perspectives__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*
+  Mobile layout
+  Single column stack on small screens
+  Footer stacks vertically and centers
+*/
+@media (max-width: 768px) {
+  .perspectives__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .perspectives__header {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .perspectives__sub {
+    text-align: left;
+  }
+
+  .perspectives__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+}
+
+/*
+  Small mobile adjustments
+  Full width button on very small screens
+*/
+@media (max-width: 480px) {
+  .perspectives__footer .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
