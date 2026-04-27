@@ -35,7 +35,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 # Add your domain here when deploying
 ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS',
-    default='localhost'
+    default='localhost,*.onrender.com'
 ).split(',')
 
 
